@@ -5,6 +5,7 @@ const NoteList = (props) => {
   return (
     <ul>
       {/* Render list of notes here... */}
+      {}
       <NoteItem />
     </ul>
   );
