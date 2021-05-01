@@ -11,11 +11,36 @@ import Instructions from './Instructions';
           refactor to get this Content component to work.
 */
 class Content extends Component {
+  state = {
+    edit: false,
+    note: {}
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.note.id !== props.note.id) {
+      return {
+        edit: false,
+        note: props.note,
+      }
+    }
+    return state;
+  }
+
+  toggleEdit = () => {
+    this.setState({ edit: !this.state.edit });
+  }
+
   renderContent = () => {
-    if (false) {
-      return <NoteEditor />;
-    } else if (false) {
-      return <NoteViewer />;
+    if (this.state.edit) {
+      return <NoteEditor
+        note={this.props.note}
+        onCancel={this.toggleEdit}
+       />;
+    } else if (this.state.note.id) {
+      return <NoteViewer 
+        note={this.props.note}
+        onEdit={this.toggleEdit}
+      />;
     } else {
       return <Instructions />;
     }
