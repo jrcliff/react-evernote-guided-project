@@ -34,6 +34,7 @@ class Content extends Component {
     if (this.state.edit) {
       return <NoteEditor
         note={this.props.note}
+        onSave={this.props.onSave}
         onCancel={this.toggleEdit}
        />;
     } else if (this.state.note.id) {
